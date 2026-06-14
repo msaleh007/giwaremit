@@ -14,7 +14,6 @@
     --ink: #EDF2FF;
     --ink-dim: #8696B8;
     --ink-faint: #5A6B8C;
-    /* Sunrise-over-ocean palette - money crossing borders at dawn */
     --coral: #FF6B5B;
     --amber: #FFB627;
     --teal: #2DD4BF;
@@ -25,38 +24,26 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Sora', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    line-height: 1.5;
+    background: var(--bg); color: var(--ink);
+    font-family: 'Sora', sans-serif; min-height: 100vh;
+    overflow-x: hidden; line-height: 1.5;
   }
-
-  /* Ambient dawn gradient */
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
+    content: ''; position: fixed; inset: 0;
     background:
       radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255,107,91,0.08), transparent 60%),
       radial-gradient(ellipse 60% 40% at 80% 10%, rgba(255,182,39,0.05), transparent 50%),
       radial-gradient(ellipse 70% 50% at 10% 90%, rgba(45,212,191,0.06), transparent 55%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
   .wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  /* ===== NAV ===== */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(6,9,20,0.8);
-    backdrop-filter: blur(16px);
+    background: rgba(6,9,20,0.8); backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line);
   }
   .nav-inner {
@@ -80,6 +67,14 @@
   .net-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: blink 2s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
+  /* Arc v0.7.2 badge */
+  .arc-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,182,39,0.08); border: 1px solid rgba(255,182,39,0.25);
+    padding: 6px 13px; border-radius: 100px; font-size: 11px; color: var(--amber);
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600;
+  }
+
   .btn-wallet {
     background: linear-gradient(135deg, var(--coral), var(--amber));
     border: none; color: #1A0F08; padding: 10px 20px; border-radius: 10px;
@@ -89,9 +84,9 @@
   .btn-wallet:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(255,107,91,0.3); }
   .btn-wallet.on { background: rgba(45,212,191,0.12); border: 1px solid var(--teal); color: var(--teal); }
 
-  /* ===== HERO ===== */
+  /* HERO */
   .hero { padding: 70px 0 40px; }
-  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: start; }
   @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
 
   .eyebrow {
@@ -101,15 +96,11 @@
   }
   .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--amber); }
 
-  h1 {
-    font-size: clamp(38px, 5.5vw, 60px); font-weight: 800; line-height: 1.04;
-    letter-spacing: -2px; margin-bottom: 22px;
-  }
+  h1 { font-size: clamp(38px, 5.5vw, 60px); font-weight: 800; line-height: 1.04; letter-spacing: -2px; margin-bottom: 22px; }
   h1 .flow { background: linear-gradient(120deg, var(--coral) 0%, var(--amber) 50%, var(--teal) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
   .lede { color: var(--ink-dim); font-size: 17px; max-width: 460px; margin-bottom: 32px; line-height: 1.65; }
 
-  /* The corridor comparison - the signature element */
   .corridor {
     background: var(--surface); border: 1px solid var(--line);
     border-radius: 16px; padding: 22px; margin-bottom: 8px;
@@ -129,16 +120,25 @@
   .corr-fee.good { color: var(--teal); }
   .corr-time { font-size: 11px; color: var(--ink-faint); }
 
-  /* ===== SEND CARD ===== */
+  /* SEND CARD */
   .send-card {
     background: linear-gradient(180deg, var(--bg-elevated), var(--surface));
     border: 1px solid var(--line); border-radius: 22px; padding: 26px;
     box-shadow: 0 24px 70px rgba(0,0,0,0.45);
   }
   .send-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
-  .send-desc { font-size: 13px; color: var(--ink-dim); margin-bottom: 22px; }
+  .send-desc { font-size: 13px; color: var(--ink-dim); margin-bottom: 18px; }
 
-  .field { margin-bottom: 16px; }
+  /* Mode tabs */
+  .mode-tabs { display: flex; gap: 6px; margin-bottom: 18px; background: var(--bg); border-radius: 11px; padding: 4px; }
+  .mode-tab {
+    flex: 1; padding: 9px; border: none; border-radius: 8px; cursor: pointer;
+    font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600;
+    background: transparent; color: var(--ink-faint); transition: all 0.2s;
+  }
+  .mode-tab.active { background: var(--surface-2); color: var(--ink); }
+
+  .field { margin-bottom: 14px; }
   .field-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-dim); margin-bottom: 8px; }
   .field-label .hint { font-family: 'IBM Plex Mono', monospace; color: var(--ink-faint); }
 
@@ -155,12 +155,30 @@
   .input-shell input::placeholder { color: var(--ink-faint); }
   .input-shell input.amt { font-size: 26px; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
 
+  /* Memo field - Arc v0.7.2 feature */
+  .memo-shell {
+    background: var(--bg); border: 1px solid rgba(255,182,39,0.2); border-radius: 13px;
+    padding: 12px 16px; display: flex; align-items: center; gap: 10px;
+    transition: border-color 0.2s;
+  }
+  .memo-shell:focus-within { border-color: var(--amber); }
+  .memo-shell input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-size: 13px; width: 100%;
+  }
+  .memo-shell input::placeholder { color: var(--ink-faint); }
+  .memo-icon { font-size: 14px; }
+  .memo-tag {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--amber);
+    background: rgba(255,182,39,0.1); border: 1px solid rgba(255,182,39,0.2);
+    padding: 2px 7px; border-radius: 5px; white-space: nowrap;
+  }
+
   .usdc-chip {
     display: flex; align-items: center; gap: 6px; background: rgba(56,189,248,0.1);
     border: 1px solid rgba(56,189,248,0.2); border-radius: 9px; padding: 7px 11px;
     font-size: 13px; color: var(--sky); white-space: nowrap; font-weight: 600;
   }
-
   .country-select {
     display: flex; align-items: center; gap: 8px; background: var(--surface-2);
     border: 1px solid var(--line); border-radius: 9px; padding: 7px 12px;
@@ -168,18 +186,17 @@
   }
   .country-select:hover { border-color: var(--teal); }
 
-  /* Conversion display */
   .convert-box {
     background: var(--bg); border: 1px solid var(--line-warm); border-radius: 13px;
-    padding: 16px; margin: 16px 0; text-align: center;
+    padding: 14px; margin: 14px 0; text-align: center;
   }
-  .convert-arrow { color: var(--ink-faint); font-size: 18px; margin-bottom: 8px; }
-  .convert-amt { font-size: 28px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; }
-  .convert-amt .cur { font-size: 16px; color: var(--ink-dim); font-weight: 500; }
-  .convert-rate { font-size: 12px; color: var(--ink-faint); margin-top: 6px; font-family: 'IBM Plex Mono', monospace; }
+  .convert-arrow { color: var(--ink-faint); font-size: 18px; margin-bottom: 6px; }
+  .convert-amt { font-size: 26px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; }
+  .convert-amt .cur { font-size: 15px; color: var(--ink-dim); font-weight: 500; }
+  .convert-rate { font-size: 12px; color: var(--ink-faint); margin-top: 5px; font-family: 'IBM Plex Mono', monospace; }
 
-  .breakdown { margin: 18px 0; }
-  .bd-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; }
+  .breakdown { margin: 14px 0; }
+  .bd-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; }
   .bd-row .k { color: var(--ink-dim); }
   .bd-row .v { font-family: 'IBM Plex Mono', monospace; }
   .bd-row .v.free { color: var(--teal); }
@@ -196,7 +213,47 @@
   .btn-send:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,107,91,0.3); }
   .btn-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  /* ===== STATS STRIP ===== */
+  /* BATCH SECTION */
+  .batch-panel { display: none; }
+  .batch-panel.show { display: block; }
+  .single-panel { display: block; }
+  .single-panel.hide { display: none; }
+
+  .batch-recipient {
+    background: var(--bg); border: 1px solid var(--line); border-radius: 13px;
+    padding: 14px 16px; margin-bottom: 10px; position: relative;
+  }
+  .batch-recipient-head {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+  }
+  .batch-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--amber); }
+  .btn-remove {
+    background: rgba(255,107,91,0.1); border: 1px solid rgba(255,107,91,0.2);
+    color: var(--coral); border-radius: 6px; padding: 3px 9px; font-size: 11px;
+    cursor: pointer; font-family: 'Sora', sans-serif;
+  }
+  .batch-row { display: flex; gap: 8px; margin-bottom: 8px; }
+  .batch-row .input-shell { flex: 1; }
+  .batch-row .input-shell:last-child { flex: 0 0 100px; }
+  .batch-row .input-shell input { font-size: 13px; }
+
+  .btn-add-recipient {
+    width: 100%; padding: 11px; border: 1px dashed rgba(45,212,191,0.3);
+    border-radius: 11px; background: transparent; color: var(--teal);
+    font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; margin-bottom: 14px;
+  }
+  .btn-add-recipient:hover { background: rgba(45,212,191,0.05); border-color: var(--teal); }
+
+  .batch-summary {
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 11px;
+    padding: 12px 16px; margin-bottom: 14px;
+  }
+  .batch-summary-row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; }
+  .batch-summary-row .k { color: var(--ink-dim); }
+  .batch-summary-row .v { font-family: 'IBM Plex Mono', monospace; font-weight: 600; color: var(--amber); }
+
+  /* STATS */
   .stats-strip {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
     background: var(--line); border: 1px solid var(--line); border-radius: 16px;
@@ -211,7 +268,7 @@
   .stat-cap { font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
   @media (max-width: 700px) { .stats-strip { grid-template-columns: repeat(2,1fr); } }
 
-  /* ===== HOW IT WORKS ===== */
+  /* HOW IT WORKS */
   .section-head { margin: 60px 0 30px; }
   .section-head .eyebrow { margin-bottom: 12px; }
   .section-head h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -1px; }
@@ -220,7 +277,7 @@
   @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
   .step {
     background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-    position: relative; transition: transform 0.25s, border-color 0.25s;
+    transition: transform 0.25s, border-color 0.25s;
   }
   .step:hover { transform: translateY(-4px); border-color: rgba(45,212,191,0.3); }
   .step-n { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--amber); margin-bottom: 14px; }
@@ -228,7 +285,24 @@
   .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
   .step p { font-size: 13px; color: var(--ink-dim); line-height: 1.6; }
 
-  /* ===== HISTORY ===== */
+  /* Arc v0.7.2 features section */
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 30px 0 60px; }
+  @media (max-width: 640px) { .features-grid { grid-template-columns: 1fr; } }
+  .feat-card {
+    background: var(--surface); border: 1px solid rgba(255,182,39,0.2);
+    border-radius: 16px; padding: 22px;
+  }
+  .feat-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--amber);
+    background: rgba(255,182,39,0.08); border: 1px solid rgba(255,182,39,0.2);
+    padding: 3px 9px; border-radius: 5px; margin-bottom: 14px;
+  }
+  .feat-icon { font-size: 28px; margin-bottom: 12px; }
+  .feat-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .feat-card p { font-size: 13px; color: var(--ink-dim); line-height: 1.6; }
+
+  /* HISTORY */
   .history-card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
     padding: 24px; margin: 30px 0 60px;
@@ -246,15 +320,20 @@
   .hi-flag { font-size: 22px; }
   .hi-to { font-size: 14px; font-weight: 600; }
   .hi-meta { font-size: 11px; color: var(--ink-faint); font-family: 'IBM Plex Mono', monospace; }
+  .hi-memo { font-size: 11px; color: var(--amber); margin-top: 2px; font-family: 'IBM Plex Mono', monospace; }
   .hi-amt { text-align: right; }
   .hi-usd { font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 15px; }
   .hi-local { font-size: 11px; color: var(--teal); }
+  .hi-batch-badge {
+    font-size: 10px; color: var(--sky); background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.2); border-radius: 5px; padding: 2px 7px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
 
-  /* ===== FOOTER ===== */
   footer { border-top: 1px solid var(--line); padding: 30px 0; text-align: center; color: var(--ink-faint); font-size: 12px; }
   footer strong { color: var(--coral); }
 
-  /* ===== MODAL ===== */
+  /* MODAL */
   .overlay {
     position: fixed; inset: 0; background: rgba(6,9,20,0.88); backdrop-filter: blur(10px);
     display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
@@ -275,7 +354,8 @@
   .ft-check { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
   .ft-spin { width: 14px; height: 14px; border: 2px solid rgba(45,212,191,0.3); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg);} }
-  .modal-receipt { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); word-break: break-all; margin-bottom: 14px; }
+  .modal-receipt { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-faint); word-break: break-all; margin-bottom: 14px; text-align: left; }
+  .modal-memo-display { background: rgba(255,182,39,0.06); border: 1px solid rgba(255,182,39,0.2); border-radius: 10px; padding: 10px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--amber); margin-bottom: 10px; text-align: left; }
   .btn-done { width: 100%; padding: 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 600; font-size: 14px; cursor: pointer; }
 
   .dd { position: relative; }
@@ -293,7 +373,8 @@
       <div class="brand-mark">🌅</div>
       Giwa<span>Remit</span>
     </div>
-    <div style="display:flex; align-items:center; gap:14px;">
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+      <div class="arc-badge">⚡ Arc v0.7.2</div>
       <div class="net-pill"><span class="net-dot"></span>GIWA Testnet</div>
       <button class="btn-wallet" id="walletBtn" onclick="connectWallet()">Connect Wallet</button>
     </div>
@@ -345,49 +426,109 @@
         <div class="send-title">Send a transfer</div>
         <div class="send-desc">USDC settles instantly on GIWA Testnet</div>
 
-        <div class="field">
-          <div class="field-label"><span>You send</span><span class="hint" id="balHint">Balance: — USDC</span></div>
-          <div class="input-shell">
-            <input class="amt" type="number" id="sendAmt" placeholder="200" oninput="recalc()" />
-            <div class="usdc-chip">💵 USDC</div>
-          </div>
+        <!-- Mode tabs -->
+        <div class="mode-tabs">
+          <button class="mode-tab active" onclick="switchMode('single')">Single Transfer</button>
+          <button class="mode-tab" onclick="switchMode('batch')">Batch Transfer</button>
         </div>
 
-        <div class="field">
-          <div class="field-label"><span>Recipient gets</span></div>
-          <div class="input-shell">
-            <input type="text" id="recipient" placeholder="Recipient wallet (0x...)" />
-            <div class="dd">
-              <div class="country-select" onclick="toggleCountry()">
-                <span id="flagSel">🇵🇰</span>
-                <span id="curSel">PKR</span>
-                <span style="color:var(--ink-faint)">▾</span>
-              </div>
-              <div class="dd-menu" id="ddMenu">
-                <div class="dd-opt" onclick="setCountry('🇵🇰','PKR',278.5)"><span>🇵🇰</span> Pakistan · PKR</div>
-                <div class="dd-opt" onclick="setCountry('🇮🇳','INR',83.2)"><span>🇮🇳</span> India · INR</div>
-                <div class="dd-opt" onclick="setCountry('🇵🇭','PHP',56.8)"><span>🇵🇭</span> Philippines · PHP</div>
-                <div class="dd-opt" onclick="setCountry('🇳🇬','NGN',1480)"><span>🇳🇬</span> Nigeria · NGN</div>
-                <div class="dd-opt" onclick="setCountry('🇧🇩','BDT',119.5)"><span>🇧🇩</span> Bangladesh · BDT</div>
+        <!-- SINGLE MODE -->
+        <div class="single-panel" id="singlePanel">
+          <div class="field">
+            <div class="field-label"><span>You send</span><span class="hint" id="balHint">Balance: — USDC</span></div>
+            <div class="input-shell">
+              <input class="amt" type="number" id="sendAmt" placeholder="200" oninput="recalc()" />
+              <div class="usdc-chip">💵 USDC</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="field-label"><span>Recipient wallet</span></div>
+            <div class="input-shell">
+              <input type="text" id="recipient" placeholder="Recipient wallet (0x...)" />
+              <div class="dd">
+                <div class="country-select" onclick="toggleCountry()">
+                  <span id="flagSel">🇵🇰</span>
+                  <span id="curSel">PKR</span>
+                  <span style="color:var(--ink-faint)">▾</span>
+                </div>
+                <div class="dd-menu" id="ddMenu">
+                  <div class="dd-opt" onclick="setCountry('🇵🇰','PKR',278.5)"><span>🇵🇰</span> Pakistan · PKR</div>
+                  <div class="dd-opt" onclick="setCountry('🇮🇳','INR',83.2)"><span>🇮🇳</span> India · INR</div>
+                  <div class="dd-opt" onclick="setCountry('🇵🇭','PHP',56.8)"><span>🇵🇭</span> Philippines · PHP</div>
+                  <div class="dd-opt" onclick="setCountry('🇳🇬','NGN',1480)"><span>🇳🇬</span> Nigeria · NGN</div>
+                  <div class="dd-opt" onclick="setCountry('🇧🇩','BDT',119.5)"><span>🇧🇩</span> Bangladesh · BDT</div>
+                </div>
               </div>
             </div>
           </div>
+
+          <!-- MEMO FIELD - Arc v0.7.2 -->
+          <div class="field">
+            <div class="field-label">
+              <span>Transaction memo <span style="color:var(--amber)">⚡ Arc v0.7.2</span></span>
+              <span class="hint">optional</span>
+            </div>
+            <div class="memo-shell">
+              <span class="memo-icon">📝</span>
+              <input type="text" id="memoField" placeholder="e.g. Rent Jan · Invoice #123 · Family support" maxlength="80" />
+              <span class="memo-tag">on-chain</span>
+            </div>
+          </div>
+
+          <div class="convert-box">
+            <div class="convert-arrow">↓</div>
+            <div class="convert-amt"><span id="localAmt">55,700</span> <span class="cur" id="localCur">PKR</span></div>
+            <div class="convert-rate" id="rateLine">1 USDC = 278.50 PKR</div>
+          </div>
+
+          <div class="breakdown">
+            <div class="bd-row"><span class="k">Network fee</span><span class="v free">$0.04</span></div>
+            <div class="bd-row"><span class="k">Settlement time</span><span class="v">~0.8 sec</span></div>
+            <div class="bd-divider"></div>
+            <div class="bd-row total"><span class="k">They receive</span><span class="v" id="finalLocal">55,700 PKR</span></div>
+          </div>
+
+          <button class="btn-send" id="sendBtn" onclick="sendMoney()">Send Transfer</button>
         </div>
 
-        <div class="convert-box">
-          <div class="convert-arrow">↓</div>
-          <div class="convert-amt"><span id="localAmt">55,700</span> <span class="cur" id="localCur">PKR</span></div>
-          <div class="convert-rate" id="rateLine">1 USDC = 278.50 PKR</div>
-        </div>
+        <!-- BATCH MODE -->
+        <div class="batch-panel" id="batchPanel">
+          <div class="field">
+            <div class="field-label"><span>Amount per recipient (USDC)</span><span class="hint" id="balHintBatch">Balance: — USDC</span></div>
+            <div class="input-shell">
+              <input class="amt" type="number" id="batchAmt" placeholder="100" oninput="recalcBatch()" />
+              <div class="usdc-chip">💵 USDC</div>
+            </div>
+          </div>
 
-        <div class="breakdown">
-          <div class="bd-row"><span class="k">Network fee</span><span class="v free">$0.04</span></div>
-          <div class="bd-row"><span class="k">Settlement time</span><span class="v">~0.8 sec</span></div>
-          <div class="bd-divider"></div>
-          <div class="bd-row total"><span class="k">They receive</span><span class="v" id="finalLocal">55,700 PKR</span></div>
-        </div>
+          <!-- MEMO FIELD for Batch - Arc v0.7.2 -->
+          <div class="field">
+            <div class="field-label">
+              <span>Batch memo <span style="color:var(--amber)">⚡ Arc v0.7.2</span></span>
+              <span class="hint">optional</span>
+            </div>
+            <div class="memo-shell">
+              <span class="memo-icon">📝</span>
+              <input type="text" id="batchMemo" placeholder="e.g. Payroll May 2026 · Family batch · Team bonus" maxlength="80" />
+              <span class="memo-tag">on-chain</span>
+            </div>
+          </div>
 
-        <button class="btn-send" id="sendBtn" onclick="sendMoney()">Send Transfer</button>
+          <div id="batchRecipients">
+            <!-- Recipients injected here -->
+          </div>
+
+          <button class="btn-add-recipient" onclick="addRecipient()">+ Add recipient (max 5)</button>
+
+          <div class="batch-summary" id="batchSummary">
+            <div class="batch-summary-row"><span class="k">Recipients</span><span class="v" id="bsCount">1</span></div>
+            <div class="batch-summary-row"><span class="k">Total USDC</span><span class="v" id="bsTotal">100.00</span></div>
+            <div class="batch-summary-row"><span class="k">Total fee</span><span class="v" style="color:var(--teal)">$0.04</span></div>
+          </div>
+
+          <button class="btn-send" onclick="sendBatch()">Send Batch Transfer ⚡</button>
+        </div>
       </div>
     </div>
   </section>
@@ -398,6 +539,26 @@
     <div class="stat-cell"><div class="stat-num a">6.5%</div><div class="stat-cap">Avg Bank Fee</div></div>
     <div class="stat-cell"><div class="stat-num t">0.02%</div><div class="stat-cap">GiwaRemit Fee</div></div>
     <div class="stat-cell"><div class="stat-num s">&lt;1s</div><div class="stat-cap">Settlement</div></div>
+  </div>
+
+  <!-- Arc v0.7.2 FEATURES -->
+  <div class="section-head">
+    <div class="eyebrow">Arc v0.7.2 · New Features</div>
+    <h2>Built on the latest Arc protocol</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-badge">⚡ Arc v0.7.2</div>
+      <div class="feat-icon">📝</div>
+      <h3>Transaction Memos</h3>
+      <p>Attach payment context directly on-chain — invoice references, purpose codes, or personal notes. No separate off-chain reconciliation needed.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-badge">⚡ Arc v0.7.2</div>
+      <div class="feat-icon">⚡</div>
+      <h3>Batch Transactions</h3>
+      <p>Send to multiple recipients in a single transaction. Perfect for payroll, family support, or splitting remittances — one fee, one block, multiple deliveries.</p>
+    </div>
   </div>
 
   <!-- HOW IT WORKS -->
@@ -416,13 +577,13 @@
       <div class="step-n">STEP 02</div>
       <div class="step-icon">🌍</div>
       <h3>Pick the corridor</h3>
-      <p>Enter the recipient's wallet and choose their country. See the local-currency amount live before you send.</p>
+      <p>Enter recipients, choose country, add a memo for reconciliation. See local-currency amount live before you send.</p>
     </div>
     <div class="step">
       <div class="step-n">STEP 03</div>
       <div class="step-icon">⚡</div>
       <h3>Send in a second</h3>
-      <p>USDC settles natively on GIWA in under a second for a fraction of a cent. The recipient holds real value instantly.</p>
+      <p>USDC settles natively on GIWA in under a second. Memo and batch data recorded on-chain via Arc v0.7.2.</p>
     </div>
   </div>
 
@@ -439,8 +600,8 @@
 </div>
 
 <footer>
-  Built by <strong>ArcBuilders</strong> · GASOK MVP for the GIWA ecosystem<br>
-  Cross-Border Payments (Track 1) · Settles on GIWA Testnet
+  Built by <strong>msaleh007</strong> · GASOK MVP · GIWA ecosystem<br>
+  Cross-Border Payments (Track 1) · Arc v0.7.2 · TX Memos + Batch Transactions
 </footer>
 
 <!-- MODAL -->
@@ -451,9 +612,10 @@
     <p id="mDesc">Settling on GIWA Testnet</p>
     <div class="flow-track" id="track">
       <div class="ft-step" id="t1"><div class="ft-check">1</div><div>Confirming USDC balance</div></div>
-      <div class="ft-step" id="t2"><div class="ft-check">2</div><div>Broadcasting to GIWA</div></div>
+      <div class="ft-step" id="t2"><div class="ft-check">2</div><div>Broadcasting to GIWA via Arc v0.7.2</div></div>
       <div class="ft-step" id="t3"><div class="ft-check">3</div><div>Settling cross-border transfer</div></div>
     </div>
+    <div class="modal-memo-display" id="memoDisplay" style="display:none;"></div>
     <div class="modal-receipt" id="receipt" style="display:none;"></div>
     <button class="btn-done" id="doneBtn" style="display:none;" onclick="closeModal()">Done</button>
   </div>
@@ -463,6 +625,17 @@
   let connected = false;
   let rate = 278.5, cur = 'PKR', flag = '🇵🇰';
   let transfers = [];
+  let currentMode = 'single';
+  let batchRecipients = [];
+
+  // Countries
+  const countries = {
+    'PKR': { flag: '🇵🇰', rate: 278.5, name: 'Pakistan' },
+    'INR': { flag: '🇮🇳', rate: 83.2, name: 'India' },
+    'PHP': { flag: '🇵🇭', rate: 56.8, name: 'Philippines' },
+    'NGN': { flag: '🇳🇬', rate: 1480, name: 'Nigeria' },
+    'BDT': { flag: '🇧🇩', rate: 119.5, name: 'Bangladesh' }
+  };
 
   async function connectWallet() {
     if (typeof window.ethereum === 'undefined') { alert('MetaMask not found! Install it to continue.'); return; }
@@ -472,8 +645,19 @@
       const b = document.getElementById('walletBtn');
       b.classList.add('on');
       b.textContent = acc[0].slice(0,6) + '…' + acc[0].slice(-4);
-      document.getElementById('balHint').textContent = 'Balance: 200.00 USDC';
+      document.getElementById('balHint').textContent = 'Balance: 374.00 USDC';
+      document.getElementById('balHintBatch').textContent = 'Balance: 374.00 USDC';
     } catch(e) {}
+  }
+
+  function switchMode(mode) {
+    currentMode = mode;
+    const tabs = document.querySelectorAll('.mode-tab');
+    tabs[0].classList.toggle('active', mode === 'single');
+    tabs[1].classList.toggle('active', mode === 'batch');
+    document.getElementById('singlePanel').classList.toggle('hide', mode === 'batch');
+    document.getElementById('batchPanel').classList.toggle('show', mode === 'batch');
+    if (mode === 'batch' && batchRecipients.length === 0) addRecipient();
   }
 
   function toggleCountry() { document.getElementById('ddMenu').classList.toggle('show'); }
@@ -496,20 +680,98 @@
     document.getElementById('rateLine').textContent = `1 USDC = ${rate.toLocaleString()} ${cur}`;
   }
 
+  // BATCH functions
+  function addRecipient() {
+    if (batchRecipients.length >= 5) { alert('Maximum 5 recipients for batch transfer'); return; }
+    const id = Date.now();
+    batchRecipients.push({ id, cur: 'PKR', flag: '🇵🇰', rate: 278.5 });
+    renderBatchRecipients();
+  }
+
+  function removeRecipient(id) {
+    if (batchRecipients.length <= 1) return;
+    batchRecipients = batchRecipients.filter(r => r.id !== id);
+    renderBatchRecipients();
+  }
+
+  function setBatchCountry(id, cur_code) {
+    const c = countries[cur_code];
+    batchRecipients = batchRecipients.map(r => r.id === id ? { ...r, cur: cur_code, flag: c.flag, rate: c.rate } : r);
+    renderBatchRecipients();
+    recalcBatch();
+  }
+
+  function renderBatchRecipients() {
+    const container = document.getElementById('batchRecipients');
+    container.innerHTML = batchRecipients.map((r, i) => `
+      <div class="batch-recipient" id="br-${r.id}">
+        <div class="batch-recipient-head">
+          <span class="batch-num">RECIPIENT ${i + 1}</span>
+          ${batchRecipients.length > 1 ? `<button class="btn-remove" onclick="removeRecipient(${r.id})">Remove</button>` : ''}
+        </div>
+        <div class="batch-row">
+          <div class="input-shell">
+            <input type="text" placeholder="Wallet address (0x...)" id="bw-${r.id}" style="font-size:13px;" />
+          </div>
+          <div class="input-shell" style="flex:0 0 110px; cursor:pointer;" onclick="cycleCurrency(${r.id})">
+            <span style="font-size:16px">${r.flag}</span>
+            <span style="font-size:13px;font-weight:600;">${r.cur}</span>
+            <span style="color:var(--ink-faint);font-size:11px">▾</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    recalcBatch();
+  }
+
+  function cycleCurrency(id) {
+    const keys = Object.keys(countries);
+    const r = batchRecipients.find(x => x.id === id);
+    const idx = keys.indexOf(r.cur);
+    const next = keys[(idx + 1) % keys.length];
+    setBatchCountry(id, next);
+  }
+
+  function recalcBatch() {
+    const amt = parseFloat(document.getElementById('batchAmt').value) || 0;
+    const count = batchRecipients.length;
+    document.getElementById('bsCount').textContent = count;
+    document.getElementById('bsTotal').textContent = (amt * count).toFixed(2) + ' USDC';
+  }
+
   async function sendMoney() {
     const amt = parseFloat(document.getElementById('sendAmt').value);
     const to = document.getElementById('recipient').value;
+    const memo = document.getElementById('memoField').value.trim();
     if (!amt || amt <= 0) { alert('Enter an amount to send'); return; }
     if (!to) { alert('Enter the recipient wallet address'); return; }
     if (!connected) { alert('Connect your wallet first'); return; }
+    openModal(amt, flag, cur, rate, memo, false);
+  }
 
+  async function sendBatch() {
+    const amt = parseFloat(document.getElementById('batchAmt').value);
+    const memo = document.getElementById('batchMemo').value.trim();
+    if (!amt || amt <= 0) { alert('Enter amount per recipient'); return; }
+    if (!connected) { alert('Connect your wallet first'); return; }
+    const wallets = batchRecipients.map(r => document.getElementById('bw-' + r.id)?.value || '');
+    if (wallets.some(w => !w)) { alert('Fill in all recipient wallet addresses'); return; }
+    openModal(amt, '🌍', 'BATCH', 0, memo, true, batchRecipients.length);
+  }
+
+  function openModal(amt, f, c, r, memo, isBatch, count = 1) {
     const ov = document.getElementById('overlay');
     ov.classList.add('show');
-    document.getElementById('mEmoji').textContent = '🌅';
-    document.getElementById('mTitle').textContent = 'Sending transfer…';
-    document.getElementById('mDesc').textContent = `${amt} USDC → ${flag} ${(amt*rate).toLocaleString('en-US',{maximumFractionDigits:0})} ${cur}`;
+    document.getElementById('mEmoji').textContent = isBatch ? '⚡' : '🌅';
+    document.getElementById('mTitle').textContent = isBatch ? `Batch sending to ${count} recipients…` : 'Sending transfer…';
+    document.getElementById('mDesc').textContent = isBatch
+      ? `${amt} USDC × ${count} recipients = ${(amt*count).toFixed(2)} USDC total`
+      : `${amt} USDC → ${f} ${(amt*r).toLocaleString('en-US',{maximumFractionDigits:0})} ${c}`;
     document.getElementById('receipt').style.display = 'none';
     document.getElementById('doneBtn').style.display = 'none';
+    const md = document.getElementById('memoDisplay');
+    if (memo) { md.style.display = 'block'; md.textContent = '📝 Memo: ' + memo; }
+    else { md.style.display = 'none'; }
 
     for (let i=1;i<=3;i++){ const s=document.getElementById('t'+i); s.classList.remove('live','done'); s.querySelector('.ft-check').textContent=i; }
 
@@ -529,14 +791,16 @@
       } else {
         const hash = '0x' + Math.random().toString(16).substr(2,40);
         document.getElementById('mEmoji').textContent = '✅';
-        document.getElementById('mTitle').textContent = 'Transfer complete';
-        document.getElementById('mDesc').textContent = `${flag} ${(amt*rate).toLocaleString('en-US',{maximumFractionDigits:0})} ${cur} delivered`;
-        const r = document.getElementById('receipt');
-        r.style.display = 'block';
-        r.textContent = 'TX: ' + hash;
+        document.getElementById('mTitle').textContent = isBatch ? 'Batch complete!' : 'Transfer complete';
+        document.getElementById('mDesc').textContent = isBatch
+          ? `${count} recipients received ${amt} USDC each`
+          : `${f} ${(amt*r).toLocaleString('en-US',{maximumFractionDigits:0})} ${c} delivered`;
+        const rec = document.getElementById('receipt');
+        rec.style.display = 'block';
+        rec.textContent = 'TX: ' + hash + (memo ? '\nMEMO: ' + memo : '') + (isBatch ? `\nBATCH: ${count} recipients` : '');
         document.getElementById('doneBtn').style.display = 'block';
 
-        transfers.unshift({ amt, local: amt*rate, cur, flag, time: new Date() });
+        transfers.unshift({ amt, local: isBatch ? 0 : amt*r, cur: c, flag: f, time: new Date(), memo, isBatch, count });
         renderHistory();
       }
     };
@@ -551,13 +815,16 @@
         <div class="hi-left">
           <div class="hi-flag">${t.flag}</div>
           <div>
-            <div class="hi-to">${t.amt} USDC sent</div>
-            <div class="hi-meta">${t.time.toLocaleTimeString()} · GIWA</div>
+            <div class="hi-to" style="display:flex;align-items:center;gap:8px;">
+              ${t.isBatch ? `<span>${t.count} recipients · ${t.amt} USDC each</span><span class="hi-batch-badge">BATCH</span>` : `<span>${t.amt} USDC sent</span>`}
+            </div>
+            <div class="hi-meta">${t.time.toLocaleTimeString()} · GIWA · Arc v0.7.2</div>
+            ${t.memo ? `<div class="hi-memo">📝 ${t.memo}</div>` : ''}
           </div>
         </div>
         <div class="hi-amt">
-          <div class="hi-usd">$${t.amt.toFixed(2)}</div>
-          <div class="hi-local">${t.local.toLocaleString('en-US',{maximumFractionDigits:0})} ${t.cur}</div>
+          <div class="hi-usd">${t.isBatch ? '$' + (t.amt * t.count).toFixed(2) : '$' + t.amt.toFixed(2)}</div>
+          ${!t.isBatch ? `<div class="hi-local">${t.local.toLocaleString('en-US',{maximumFractionDigits:0})} ${t.cur}</div>` : ''}
         </div>
       </div>
     `).join('');
@@ -567,10 +834,15 @@
     document.getElementById('overlay').classList.remove('show');
     document.getElementById('sendAmt').value = '';
     document.getElementById('recipient').value = '';
+    document.getElementById('memoField').value = '';
     recalc();
   }
 
+  // Init
   recalc();
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.dd')) document.getElementById('ddMenu').classList.remove('show');
+  });
 </script>
 </body>
 </html>
