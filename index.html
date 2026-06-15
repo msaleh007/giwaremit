@@ -626,7 +626,7 @@
           document.getElementById('successMemoRow').style.display = 'none';
         }
 
-        const explorerUrl = `https://explorer.giwa.io/tx/${hash}`;
+        const explorerUrl = `https://sepolia.etherscan.io/tx/${hash}`;
         document.getElementById('txLink').href = explorerUrl;
         document.getElementById('txLink').textContent = `🔍 ${hash.slice(0,20)}...${hash.slice(-8)} →`;
 
